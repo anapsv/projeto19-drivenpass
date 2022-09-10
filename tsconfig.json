@@ -1,14 +1,16 @@
 {
-    "compilerOptions": {
-      "sourceMap": true,
-      "esModuleInterop": true,
-      "strict": true,
-      "lib": ["esnext"],
-      "module": "es6",
-      "moduleResolution": "node",
-          "outDir": "dist"
-    },
-    "ts-node": {
-      "esm": true
-    }
+  "compilerOptions": {
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "lib": [
+      "esnext"
+    ],
+    "module": "es6",
+    "moduleResolution": "node",
+    "outDir": "dist"
+  },
+  "ts-node": {
+    "esm": true
   }
+}
