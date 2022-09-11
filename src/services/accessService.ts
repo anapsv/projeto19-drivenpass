@@ -50,13 +50,13 @@ function generateToken(id: number) {
 
     const data = { id };
 
-    const secretKey = process.env.JWT_SECRET || "chavesecretinha";
+    const SECRET = process.env.JWT_SECRET || "";
 
-    const exp = 60 * 60;
+    const EXPIRES_IN = Number(process.env.TOKEN_EXPIRES_IN);
 
-    const options = { expiresIn: exp };
+    const options = { expiresIn: EXPIRES_IN };
 
-    return jwt.sign(data, secretKey, options);
+    return jwt.sign(data, SECRET, options);
 }
 
 export async function verifyUser(id: number) {
