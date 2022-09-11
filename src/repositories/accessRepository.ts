@@ -14,3 +14,10 @@ export async function insert(newUser: TypeNewUser) {
 
     await client.users.create({ data: newUser });
 }
+
+export async function findByToken(id: number) {
+
+    const result = await client.users.findUnique({ where: { id } });
+
+    return result;
+}
