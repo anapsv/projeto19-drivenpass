@@ -11,14 +11,14 @@ export async function createNote(data: notesRepository.TypeNewNote) {
 
     await notesRepository.insert(data);
 
-    return "Note successfully created";
+    return "Secure note successfully registered";
 }
 
 async function verifyTitle(userId: number, title: string) {
 
     const result = await notesRepository.searchByTitleAndUserId(userId, title);
 
-    if (result) throw { type: "conflict_error", message: "A note with this title already exists" };
+    if (result) throw { type: "conflict_error", message: "A secure note with this title is already registered" };
 }
 
 export async function getNotes(userId: number) {
@@ -54,9 +54,9 @@ async function verifyNoteAndUserId(userId: number, noteId: number) {
 
     const note = await notesRepository.findById(noteId);
 
-    if (!note) throw { code: "notfound_error", message: "Note not found" };
+    if (!note) throw { type: "notfound_error", message: "Note not found" };
 
-    if (note.userId !== userId) throw { code: "unauthorized_error", message: "Note doesn't belong to user" };
+    if (note.userId !== userId) throw { type: "unauthorized_error", message: "Note doesn't belong to user" };
 
     return note;
 }

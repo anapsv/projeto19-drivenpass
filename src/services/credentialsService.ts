@@ -14,14 +14,14 @@ export async function createCredential(data: credentialsRepository.TypeNewCreden
 
     await credentialsRepository.insert(credentials);
 
-    return "Credential successfully created";
+    return "Credential successfully registered";
 }
 
 async function verifyTitle(userId: number, title: string) {
 
     const result = await credentialsRepository.findByUserIdAndTitle(userId, title);
 
-    if (result) throw { type: "conflict_error", message: "This credential title is already in use" };
+    if (result) throw { type: "conflict_error", message: "A credential with this title is already registered" };
 }
 
 function encryptPassword(password: string) {

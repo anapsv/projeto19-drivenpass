@@ -12,7 +12,7 @@ export async function createCard(cardData: cardsRepository.TypeNewCard) {
 
     await cardsRepository.insert(card);
 
-    return "Card successfully created";
+    return "Card successfully registered";
 }
 
 async function verifyTitle(userId: number, title: string) {
@@ -78,9 +78,9 @@ async function verifyCardAndUserId(userId: number, cardId: number) {
 
     const card = await cardsRepository.findById(cardId);
 
-    if (!card) throw { code: "notfound_error", message: "Card not found" };
+    if (!card) throw { type: "notfound_error", message: "Card not found" };
 
-    if (card.userId !== userId) throw { code: "unauthorized_error", message: "Card doesn't belong to user" };
+    if (card.userId !== userId) throw { type: "unauthorized_error", message: "Card doesn't belong to user" };
 
     return card;
 }
