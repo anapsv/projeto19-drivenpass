@@ -1,6 +1,9 @@
 import * as accessRepository from '../repositories/accessRepository.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export async function signUp(data: accessRepository.TypeNewUser) {
 
@@ -23,7 +26,9 @@ export async function signIn(email: string, password: string) {
 
     const encryptedPassword = user.password;
 
-    if (!bcrypt.compareSync(password, encryptedPassword)) throw { type: "unauthorized_error", message: "Incorrect email or password" };
+    const isPasswordValid = bcrypt.compareSync(password, encryptedPassword)
+
+    if (!isPasswordValid) throw { type: "unauthorized_error", message: "Incorrect email or password" };
 
     const token = generateToken(user.id);
 
@@ -49,9 +54,7 @@ function generateToken(id: number) {
 
     const SECRET = "" + process.env.JWT_SECRET;
 
-    const EXPIRES_IN = Number(process.env.TOKEN_EXPIRES_IN);
-
-    const options = { expiresIn: EXPIRES_IN };
+    const options = { expiresIn: process.env.TOKEN_EXPIRES_IN };
 
     return jwt.sign(data, SECRET, options);
 }

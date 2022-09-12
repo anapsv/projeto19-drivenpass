@@ -25,6 +25,6 @@ export default function errorHandler(error: any, req: Request, res: Response, ne
 
     }
 
-    return res.sendStatus(500);
+    return res.status(500).send(error.message);
 
 }
