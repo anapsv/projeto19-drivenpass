@@ -15,7 +15,7 @@ async function validateToken(req: Request, res: Response, next: NextFunction) {
 
     const SECRET = process.env.JWT_SECRET || "";
 
-    if (!token) throw { code: "unauthorized_error", message: "Invalid token" };
+    if (!token) throw { code: "unauthorized_error", message: "A token is required" };
 
     try {
 

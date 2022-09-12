@@ -1,9 +1,6 @@
 import * as accessRepository from '../repositories/accessRepository.js';
-import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
-dotenv.config();
 
 export async function signUp(data: accessRepository.TypeNewUser) {
 
@@ -50,7 +47,7 @@ function generateToken(id: number) {
 
     const data = { id };
 
-    const SECRET = process.env.JWT_SECRET || "";
+    const SECRET = "" + process.env.JWT_SECRET;
 
     const EXPIRES_IN = Number(process.env.TOKEN_EXPIRES_IN);
 
